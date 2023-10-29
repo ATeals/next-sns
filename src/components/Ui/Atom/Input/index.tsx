@@ -1,4 +1,4 @@
-import { generateClassName } from "@/utils/generateClassName";
+import { generateClassName } from "@/utils";
 
 interface InputProps extends React.HTMLProps<HTMLInputElement> {}
 

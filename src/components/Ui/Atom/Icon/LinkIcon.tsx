@@ -1,6 +1,6 @@
 "use client";
 
-import { generateClassName } from "@/utils/generateClassName";
+import { generateClassName } from "@/utils";
 import Link from "next/link";
 
 interface IconLinkProps {
