@@ -12,5 +12,6 @@ type Story = StoryObj<typeof Button>;
 export const Primary: Story = {
   args: {
     value: "Button",
+    fill: false,
   },
 };

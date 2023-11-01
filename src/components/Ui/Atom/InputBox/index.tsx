@@ -3,19 +3,21 @@
 import { generateClassName } from "@/utils/generateClassName";
 
 interface InputBoxProps {
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => unknown;
-  cols?: number;
-  rows?: number;
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => unknown;
   resize?: boolean;
 }
 
-export const InputBox = ({ onChange, cols = 50, rows = 5, resize = false }: InputBoxProps) => {
+export const InputBox = ({ onChange, resize = false, ...props }: InputBoxProps) => {
   return (
     <textarea
-      className={generateClassName("m-2 p-2", resize ? "" : "resize-none")}
-      cols={cols}
-      rows={rows}
+      className={generateClassName(
+        "p-2",
+        resize ? "" : "resize-none",
+        "w-full",
+        "outline-gray-300"
+      )}
       onChange={onChange}
+      {...props}
     />
   );
 };

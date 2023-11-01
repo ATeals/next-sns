@@ -6,7 +6,7 @@ const meta: Meta<typeof Avatar> = {
   component: Avatar,
   args: {
     alt: "avatar",
-    src: "https://i.pinimg.com/474x/63/4c/53/634c53818319ec85a06a172442db9e16.jpg",
+    src: "http://localhost:3000/images/defaultAvatar.webp",
   },
 };
 

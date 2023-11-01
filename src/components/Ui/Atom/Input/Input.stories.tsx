@@ -4,6 +4,9 @@ import { Input } from ".";
 const meta: Meta<typeof Input> = {
   title: "ATOM/Input",
   component: Input,
+  args: {
+    label: "input",
+  },
 };
 
 export default meta;

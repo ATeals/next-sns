@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Icon } from "./Icon";
+import { Header } from ".";
 import { BOOT_STRAP_LINK } from "@/constants";
 
-const meta: Meta<typeof Icon> = {
-  title: "ATOM/Icon",
-  component: Icon,
+const meta: Meta<typeof Header> = {
+  title: "Organism/Header",
+  component: Header,
   decorators: [
     (Story) => (
       <section>
@@ -16,11 +16,6 @@ const meta: Meta<typeof Icon> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof Icon>;
+type Story = StoryObj<typeof Header>;
 
-export const Primary: Story = {
-  args: {
-    defaultIcon: "bi bi-house-door",
-    clickedIcon: "bi bi-house-door-fill",
-  },
-};
+export const Primary: Story = {};

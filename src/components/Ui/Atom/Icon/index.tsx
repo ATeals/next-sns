@@ -6,7 +6,7 @@ interface IconLinkProps {
   defaultIcon: string;
   clickedIcon?: string;
   isClicked?: boolean;
-  size?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl";
+  size?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "6xl" | "8xl" | string;
 }
 
 export const Icon = ({

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ButtonIcon } from "./ButtonIcon";
+import { BOOT_STRAP_LINK } from "@/constants";
 
 const meta: Meta<typeof ButtonIcon> = {
   title: "ATOM/ButtonIcon",
@@ -7,10 +8,7 @@ const meta: Meta<typeof ButtonIcon> = {
   decorators: [
     (Story) => (
       <section>
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css"
-        />
+        <link rel="stylesheet" href={BOOT_STRAP_LINK} />
         <Story />
       </section>
     ),

@@ -11,7 +11,7 @@ interface IconLinkProps {
   href: string;
 }
 
-export const ButtonIcon = ({
+export const LinkIcon = ({
   defaultIcon,
   clickedIcon = defaultIcon,
   isClicked = false,
@@ -23,12 +23,10 @@ export const ButtonIcon = ({
       {href.includes("http") ? (
         <Link href={href}>
           <i className={generateClassName(isClicked ? clickedIcon : defaultIcon, `text-${size}`)} />
-          ;
         </Link>
       ) : (
         <a href={href}>
           <i className={generateClassName(isClicked ? clickedIcon : defaultIcon, `text-${size}`)} />
-          ;
         </a>
       )}
     </>
