@@ -1,13 +1,11 @@
+import type { User } from "@/types";
 import { IronSession, getIronSession, unsealData } from "iron-session";
 import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 import { NextRequest } from "next/server";
 
 declare module "iron-session" {
   interface IronSessionData {
-    user?: {
-      id: number;
-      name?: string;
-    };
+    user?: User;
   }
 }
 
