@@ -3,14 +3,16 @@
 import { Input } from "@/Ui/Atom/Input";
 import { Button } from "@/components/Ui/Atom/Button";
 import { Title } from "@/components/Ui/Atom/Title";
+import mutateFetch from "@/utils/mutateFetch";
 import { toast } from "react-toastify";
+import useSWRMutation from "swr/mutation";
 
 export default () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const Input = e.currentTarget[0] as HTMLInputElement;
-    fetch(`http://localhost:3000/api/auth?userId=${Input.value}`, {
+    fetch(`http://localhost:3000/api/auth/login?userId=${Input.value}`, {
       method: "POST",
       body: JSON.stringify({ id: Input.value }),
       headers: {
@@ -31,6 +33,7 @@ export default () => {
         });
     });
   };
+  // const {trigger} = useSWRMutation(`/api/auth?userId=${Input.value}`,(url)=>mutateFetch(url))
 
   return (
     <main className="flex flex-col justify-center items-center w-full h-screen">

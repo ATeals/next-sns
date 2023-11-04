@@ -7,7 +7,7 @@ interface mutateOption<T> {
 
 const mutateFetch = async <T>(
   url: string,
-  { method = "POST", body }: mutateOption<T>
+  { method = "POST", body }: mutateOption<T> = {}
 ): Promise<T | void> => {
   try {
     const response = await fetch(url, {

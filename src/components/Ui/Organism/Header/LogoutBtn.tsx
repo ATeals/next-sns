@@ -3,7 +3,7 @@ import { ButtonIcon } from "../../Atom/Icon/ButtonIcon";
 import useSWRMutation from "swr/mutation";
 
 export default () => {
-  const { trigger } = useSWRMutation("/api/auth", (url) => mutateFetch(url, { method: "DELETE" }), {
+  const { trigger } = useSWRMutation("/api/auth/logout", (url) => mutateFetch(url), {
     onSuccess: () => window.location.reload(),
   });
 

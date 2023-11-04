@@ -8,6 +8,7 @@ import { DEFAULT_AVATAR } from "@/constants";
 import type { User } from "@/types";
 
 import { useState } from "react";
+import useSWRMutation from "swr/mutation";
 
 interface CreatePostProps {
   user?: User;
@@ -17,6 +18,8 @@ export const CreatePost = ({ user }: CreatePostProps) => {
   const [isWrite, setIsWrite] = useState(true);
   const [height, setheight] = useState("300px");
   const [markdown, setMarkdown] = useState<string | undefined>();
+
+  // const {trigger} = useSWRMutation("api/post")
 
   return (
     <div className="relative m-10 ring-1 ring-gray-300 rounded-xl p-5 w-[70%] bg-white max-w-[680px]">

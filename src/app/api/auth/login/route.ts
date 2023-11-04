@@ -1,4 +1,3 @@
-import { PARAMS } from "@/constants";
 import { db } from "@/server/db";
 import { authService } from "@/server/services";
 import { NextResponse } from "next/server";
@@ -16,9 +15,4 @@ export const POST = authService.ironSessionWrapper(async (req) => {
   await req.session.save();
 
   return NextResponse.json({ user: req.session.user });
-});
-
-export const DELETE = authService.ironSessionWrapper(async (req) => {
-  req.session.destroy();
-  return NextResponse.json({ message: "Success Logout", status: 200 }, { status: 200 });
 });

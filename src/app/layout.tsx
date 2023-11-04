@@ -13,7 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default async function RootLayout(props: {
   children: React.ReactNode;
-  login: React.ReactNode;
+  auth: React.ReactNode;
   modal: React.ReactNode;
 }) {
   const session = await authService.getSession(cookies());
@@ -31,7 +31,7 @@ export default async function RootLayout(props: {
               {props.modal}
             </>
           ) : (
-            props.login
+            props.auth
           )}
 
           <Footer />
