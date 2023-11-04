@@ -17,7 +17,7 @@ class PostService {
   constructor(private db: PrismaClient) {}
 
   getAll() {
-    return this.db.post.findMany({ include: { childPosts: true } });
+    return this.db.post.findMany({ include: { childPosts: true }, orderBy: { updatedAt: "desc" } });
   }
 
   getById(id: number) {
@@ -25,7 +25,11 @@ class PostService {
   }
 
   getByUserId(userId: number) {
-    return this.db.post.findMany({ where: { userId }, include: { childPosts: true } });
+    return this.db.post.findMany({
+      where: { userId },
+      include: { childPosts: true },
+      orderBy: { updatedAt: "desc" },
+    });
   }
 
   create(obj: Prisma.PostCreateArgs<DefaultArgs>) {

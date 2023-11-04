@@ -5,10 +5,11 @@ import { Header } from "@/components/Ui/Organism/Header";
 import { authService } from "@/server/services";
 import { cookies } from "next/headers";
 
+import { BOOT_STRAP_LINK } from "@/constants";
+import { SWRProvider } from "@/components/SWR/SWRProvider";
+
 import "@/styles/globals.css";
 import "react-toastify/dist/ReactToastify.css";
-
-import { BOOT_STRAP_LINK } from "@/constants";
 
 export default async function RootLayout(props: {
   children: React.ReactNode;
@@ -22,18 +23,20 @@ export default async function RootLayout(props: {
         <link rel="stylesheet" href={BOOT_STRAP_LINK} />
       </head>
       <body>
-        {session ? (
-          <>
-            <Header />
-            <main className="pt-[100px] min-h-screen">{props.children}</main>
-            {props.modal}
-          </>
-        ) : (
-          props.login
-        )}
+        <SWRProvider>
+          {session ? (
+            <>
+              <Header />
+              <main className="pt-[100px] min-h-screen">{props.children}</main>
+              {props.modal}
+            </>
+          ) : (
+            props.login
+          )}
 
-        <Footer />
-        <ToastContainer />
+          <Footer />
+          <ToastContainer />
+        </SWRProvider>
       </body>
     </html>
   );

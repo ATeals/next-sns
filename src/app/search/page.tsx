@@ -1,6 +1,5 @@
 import { Print } from "@/components/Print";
 import { ProfileBox } from "@/components/Ui/Molecule/ProfileBox";
-import { SearchBar } from "@/components/Ui/Molecule/SearchBar.tsx";
 import { DEFAULT_AVATAR } from "@/constants";
 import { userService } from "@/server/services";
 
