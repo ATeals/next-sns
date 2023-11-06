@@ -2,9 +2,10 @@ import { generateClassName } from "@/utils/generateClassName";
 
 interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
   fill?: boolean;
+  type?: "button" | "submit" | "reset" | undefined;
 }
 
-export const Button = ({ value, onClick, fill = false }: ButtonProps) => {
+export const Button = ({ value, onClick, fill = false, type = "button" }: ButtonProps) => {
   return (
     <button
       onClick={onClick}
@@ -14,6 +15,7 @@ export const Button = ({ value, onClick, fill = false }: ButtonProps) => {
         "p-2 px-4 m-2",
         "rounded-lg"
       )}
+      type={type}
     >
       {value}
     </button>

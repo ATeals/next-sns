@@ -1,25 +1,23 @@
 import { Print } from "@/components/Print";
-import { ProfileBox } from "@/components/Ui/Molecule/ProfileBox";
+import { ProfileBox } from "@/components/ProfileBox";
 import { DEFAULT_AVATAR } from "@/constants";
 import { userService } from "@/server/services";
+import Link from "next/link";
 
 export default async () => {
   const users = await userService.getAll();
 
   return (
-    <>
-      <Print data={users} />
-
-      <div className="w-[600px] m-auto [&>*]:my-4">
-        {users?.map((user) => (
+    <div className="w-[600px] m-auto">
+      {users?.map((user) => (
+        <Link href={`/user/${user.id}`} key={user.id} className="m-2">
           <ProfileBox
-            key={user.id}
             title={user.name}
             description={user.phone ? String(user.phone) : ""}
             src={user.avatar || DEFAULT_AVATAR}
           />
-        ))}
-      </div>
-    </>
+        </Link>
+      ))}
+    </div>
   );
 };

@@ -8,11 +8,19 @@ interface ModalProps extends React.HTMLProps<HTMLDivElement> {}
 
 export const Modal = ({ ...props }: ModalProps) => {
   const router = useRouter();
+
   useEffect(() => {
-    window.document.body.style.overflow = "hidden";
+    const y = window.scrollY;
+    document.body.style.position = "fixed";
+    document.body.style.width = "100%";
+    document.body.style.top = `-${y}px`;
 
     return () => {
-      window.document.body.style.overflow = "auto";
+      document.body.style.position = "";
+      document.body.style.width = "";
+      document.body.style.top = "";
+      document.body.style.overflowY = "";
+      window.scrollTo(0, window.scrollY);
     };
   }, []);
 

@@ -2,7 +2,7 @@
 
 import { generateClassName } from "@/utils/generateClassName";
 
-interface InputBoxProps {
+interface InputBoxProps extends React.HTMLProps<HTMLTextAreaElement> {
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => unknown;
   resize?: boolean;
 }

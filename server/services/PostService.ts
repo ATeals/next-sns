@@ -4,7 +4,6 @@ import { db } from "../db";
 
 interface UpdatePost {
   id?: number;
-  title?: string;
   body?: string;
   coverImg?: string | null;
   createdAt?: Date | string;
@@ -17,11 +16,18 @@ class PostService {
   constructor(private db: PrismaClient) {}
 
   getAll() {
-    return this.db.post.findMany({ include: { childPosts: true }, orderBy: { updatedAt: "desc" } });
+    return this.db.post.findMany({
+      include: { childPosts: { include: { user: true } }, user: true, likes: true },
+      where: { parentPostId: null },
+      orderBy: { updatedAt: "desc" },
+    });
   }
 
   getById(id: number) {
-    return this.db.post.findUnique({ where: { id }, include: { childPosts: true } });
+    return this.db.post.findUnique({
+      where: { id },
+      include: { childPosts: { include: { user: true } }, user: true, likes: true },
+    });
   }
 
   getByUserId(userId: number) {
@@ -40,7 +46,7 @@ class PostService {
     return this.db.post.create({
       data: {
         ...obj.data,
-        childPosts: { connect: { id } },
+        parentPostId: id,
       },
     });
   }

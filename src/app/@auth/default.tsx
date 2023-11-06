@@ -11,7 +11,7 @@ export default () => {
 
     const Input = e.currentTarget[0] as HTMLInputElement;
 
-    fetch(`http://localhost:3000/api/auth?userId=${Input.value}`, {
+    fetch(`http://localhost:3000/api/auth/login?userId=${Input.value}`, {
       method: "POST",
       body: JSON.stringify({ id: Input.value }),
       headers: {

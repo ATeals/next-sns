@@ -1,7 +1,7 @@
 import { ToastContainer } from "react-toastify";
 
-import { Footer } from "@/components/Ui/Organism/Footer";
-import { Header } from "@/components/Ui/Organism/Header";
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
 import { authService } from "@/server/services";
 import { cookies } from "next/headers";
 
@@ -22,12 +22,12 @@ export default async function RootLayout(props: {
       <head>
         <link rel="stylesheet" href={BOOT_STRAP_LINK} />
       </head>
-      <body>
+      <body className="overflow-auto">
         <SWRProvider>
           {session ? (
             <>
-              <Header />
-              <main className="pt-[100px] min-h-screen">{props.children}</main>
+              <Header userId={String(session.user?.id)} />
+              <main className="pt-[100px] min-h-screen w-full">{props.children}</main>
               {props.modal}
             </>
           ) : (

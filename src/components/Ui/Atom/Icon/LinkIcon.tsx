@@ -9,6 +9,7 @@ interface IconLinkProps {
   isClicked?: boolean;
   size?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl";
   href: string;
+  className?: string;
 }
 
 export const LinkIcon = ({
@@ -17,17 +18,18 @@ export const LinkIcon = ({
   isClicked = false,
   size = "2xl",
   href,
+  className,
 }: IconLinkProps) => {
   return (
     <>
       {href.includes("http") ? (
-        <Link href={href}>
-          <i className={generateClassName(isClicked ? clickedIcon : defaultIcon, `text-${size}`)} />
-        </Link>
-      ) : (
-        <a href={href}>
+        <a href={href} className={className}>
           <i className={generateClassName(isClicked ? clickedIcon : defaultIcon, `text-${size}`)} />
         </a>
+      ) : (
+        <Link href={href} className={className}>
+          <i className={generateClassName(isClicked ? clickedIcon : defaultIcon, `text-${size}`)} />
+        </Link>
       )}
     </>
   );
