@@ -3,9 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider     = "mysql"
-  url          = env("DATABASE_URL")
-  relationMode = "prisma"
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -28,10 +27,11 @@ model Post {
   updatedAt    DateTime @default(now()) @updatedAt
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   userId       Int
-  parentPost   Post?    @relation("ChildPosts", fields: [parentPostId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  parentPost   Post?    @relation("ChildPosts", fields: [parentPostId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   parentPostId Int?
   childPosts   Post[]   @relation("ChildPosts")
   likes        Like[]
+  depth        Int      @default(0)
 
   @@index([userId])
   @@index([parentPostId])

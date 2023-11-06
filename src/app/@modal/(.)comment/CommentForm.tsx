@@ -18,7 +18,9 @@ export const CommentForm = ({ user, parentPostId }: { user: User; parentPostId: 
       onSuccess: () => {
         router.back();
       },
-      onError: (err) => console.log(err),
+      onError: (err) => {
+        console.log(err);
+      },
     }
   );
 

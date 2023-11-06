@@ -16,6 +16,7 @@ export default ({ post, user }: { post: Post; user: User }) => {
     childPosts,
     likes,
     updatedAt,
+    depth,
   } = post;
 
   return (
@@ -27,7 +28,9 @@ export default ({ post, user }: { post: Post; user: User }) => {
         <PostBody children={body} className="h-[300px] overflow-hidden" />
       </Link>
       <div className="px-5 border-l-2 border-l-gray-300 mx-4 [&>*]:mx-2">
-        <LinkIcon defaultIcon={"bi bi-chat text-gray-500"} href={`/comment?parentPostId=${id}`} />
+        {depth < 2 && (
+          <LinkIcon defaultIcon={"bi bi-chat text-gray-500"} href={`/comment?parentPostId=${id}`} />
+        )}
         <ButtonIcon
           defaultIcon={"bi bi-suit-heart text-gray-500"}
           onClick={(e) => console.log("like")}

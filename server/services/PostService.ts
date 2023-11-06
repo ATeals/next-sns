@@ -42,17 +42,22 @@ class PostService {
     return this.db.post.create(obj);
   }
 
-  createChild(id: number, obj: Prisma.PostCreateArgs<DefaultArgs>) {
+  async createChild(id: number, obj: Prisma.PostCreateArgs<DefaultArgs>) {
+    const parentPost = await this.db.post.findUnique({ where: { id } });
+
+    if (!parentPost) throw new Error("Parent Not Found");
+
+    if (parentPost.depth >= 2) throw new Error("No More Child");
+
     return this.db.post.create({
       data: {
         ...obj.data,
-        parentPostId: id,
+        depth: parentPost.depth + 1,
       },
     });
   }
 
   async delete(id: number) {
-    await this.db.post.deleteMany({ where: { parentPostId: id } });
     await this.db.post.delete({ where: { id } });
     return;
   }

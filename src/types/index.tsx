@@ -15,6 +15,7 @@ export interface Post {
   user: User;
   childPosts?: Post[];
   likes?: Like[];
+  depth: number;
 }
 
 export interface Like {

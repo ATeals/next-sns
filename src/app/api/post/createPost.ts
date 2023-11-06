@@ -21,10 +21,22 @@ export const createPost = authService.ironSessionWrapper(async (req) => {
 
   const { body, parentPostId } = reqBody;
 
-  try {
-    await postService.create({ data: { body, userId: user.id, parentPostId } });
-  } catch (e) {
-    return NextResponse.json({ error: "DB error" }, { status: 400 });
+  if (parentPostId) {
+    try {
+      await postService.createChild(parentPostId, {
+        data: { body, userId: user.id, parentPostId },
+      });
+    } catch (e) {
+      return NextResponse.json({ error: "No More Child" }, { status: 400 });
+    }
+  } else {
+    try {
+      await postService.create({
+        data: { body, userId: user.id },
+      });
+    } catch (e) {
+      return NextResponse.json({ error: "DB error" }, { status: 400 });
+    }
   }
 
   return NextResponse.json({ user: req.session.user });
