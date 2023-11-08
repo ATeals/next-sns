@@ -54,9 +54,9 @@ export const metadata = {
     site_name: "CoffeeCat",
     images: [
       {
-        url: "images/logoImg.webp",
-        width: 1900,
-        height: 630,
+        url: "/images/logoImg.webp",
+        width: 500,
+        height: 500,
         alt: "logo",
       },
     ],
