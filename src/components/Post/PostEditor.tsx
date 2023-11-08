@@ -17,8 +17,6 @@ export const PostEditor = ({ onPosting, previousMarkdown, isMutating }: CreatePo
   const [height, setheight] = useState("300px");
   const [markdown, setMarkdown] = useState<string | undefined>(previousMarkdown);
 
-  console.log(isMutating);
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (markdown && !isMutating) onPosting(markdown);

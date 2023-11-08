@@ -12,7 +12,6 @@ interface Post {
 }
 
 export const updatePost = authService.ironSessionWrapper(async (req) => {
-  console.log("come!");
   const user = req.session.user;
 
   const reqBody: Post = await req.json();

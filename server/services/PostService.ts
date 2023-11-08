@@ -23,6 +23,16 @@ class PostService {
     });
   }
 
+  getPostsWithPagination(skip: number, take: number) {
+    return this.db.post.findMany({
+      include: { childPosts: { include: { user: true } }, user: true, likes: true },
+      where: { parentPostId: null },
+      orderBy: { updatedAt: "desc" },
+      skip,
+      take,
+    });
+  }
+
   getById(id: number) {
     return this.db.post.findUnique({
       where: { id },

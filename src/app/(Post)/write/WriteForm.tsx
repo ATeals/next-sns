@@ -16,6 +16,7 @@ export const WriteForm = ({ user }: { user: User }) => {
     {
       onSuccess: () => {
         router.back();
+        router.refresh();
       },
       onError: (err) => console.log(err),
     }

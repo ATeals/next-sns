@@ -25,6 +25,7 @@ export const UpdateForm = ({
     {
       onSuccess: () => {
         router.back();
+        router.refresh();
       },
       onError: (err) => console.log(err),
     }

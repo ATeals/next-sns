@@ -6,14 +6,12 @@ export const updateUser = authService.ironSessionWrapper(async (req) => {
   const { email, password, name, avatar } = await req.json();
 
   if (!(email && password && name)) {
-    console.log("input");
     return NextResponse.json({ error: "Input Required" }, { status: 400 });
   }
 
   const user = await userService.getByEmail(email);
 
   if (!user) {
-    console.log("email");
     return NextResponse.json({ error: `User Not Found` }, { status: 400 });
   }
 
