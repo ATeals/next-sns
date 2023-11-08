@@ -2,7 +2,6 @@
 
 import { PostHeader } from "@/components/Post";
 import { PostEditor } from "@/components/Post/PostEditor";
-import { DEFAULT_AVATAR } from "@/constants";
 import { User } from "@/types";
 import mutateFetch from "@/utils/mutateFetch";
 import { useRouter } from "next/navigation";

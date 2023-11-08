@@ -17,10 +17,10 @@ export default () => {
       {
         arg: { email, password, name, avatar },
       }: { arg: { email: string; password: string; name: string; avatar: string } }
-    ) => mutateFetch(key, { body: { email, password, name, avatar } }),
+    ) => mutateFetch(key, { body: { email, password, name, avatar }, method: "PATCH" }),
     {
-      onSuccess: () => router.refresh(),
-      onError: () => toastError("가입에 실패했습니다."),
+      onSuccess: () => router.back(),
+      onError: () => toastError("유저 업데이트에 실패했습니다."),
     }
   );
 
@@ -43,13 +43,15 @@ export default () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col [&>*]:m-2">
-      <Title>Join!</Title>
-      <Input placeholder="Email" id="Email" />
-      <Input placeholder="Password" id="Password" type="password" />
-      <Input placeholder="name" id="name" type="text" />
-      <Input placeholder="avatar" id="avatar" type="text" />
-      <Button fill={true} value={"Join"} type="submit" />
-    </form>
+    <main className="flex flex-col justify-center items-center h-screen">
+      <form onSubmit={handleSubmit} className="flex flex-col [&>*]:m-2">
+        <Title>Update!</Title>
+        <Input placeholder="checkEmail" id="Email" />
+        <Input placeholder="checkPassword" id="Password" type="password" />
+        <Input placeholder="name" id="name" type="text" />
+        <Input placeholder="avatar" id="avatar" type="text" />
+        <Button fill={true} value={"Update"} type="submit" />
+      </form>
+    </main>
   );
 };

@@ -3,11 +3,9 @@ import { cookies } from "next/headers";
 import { WriteForm } from "./WriteForm";
 import { redirect } from "next/navigation";
 
-export default async ({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) => {
+export const revalidate = 0;
+
+export default async () => {
   const session = await authService.getSession(cookies());
 
   if (!session?.user) return redirect("/");

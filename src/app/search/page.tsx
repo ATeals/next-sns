@@ -1,4 +1,3 @@
-import { Print } from "@/components/Print";
 import { ProfileBox } from "@/components/ProfileBox";
 import { DEFAULT_AVATAR } from "@/constants";
 import { userService } from "@/server/services";
@@ -11,11 +10,7 @@ export default async () => {
     <div className="w-[600px] m-auto">
       {users?.map((user) => (
         <Link href={`/user/${user.id}`} key={user.id} className="m-2">
-          <ProfileBox
-            title={user.name}
-            description={user.phone ? String(user.phone) : ""}
-            src={user.avatar || DEFAULT_AVATAR}
-          />
+          <ProfileBox title={user.name} description="" src={user.avatar || DEFAULT_AVATAR} />
         </Link>
       ))}
     </div>
