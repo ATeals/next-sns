@@ -18,7 +18,7 @@ export const UpdateForm = ({
 }) => {
   const router = useRouter();
 
-  const { trigger } = useSWRMutation(
+  const { trigger, isMutating } = useSWRMutation(
     "api/post",
     (url, { arg }: { arg: string }) =>
       mutateFetch(url, { body: { body: arg, id: postId }, method: "PATCH" }),
@@ -37,7 +37,11 @@ export const UpdateForm = ({
   return (
     <div className="relative m-10 ring-1 ring-gray-300 rounded-xl p-5 w-[70%] bg-white max-w-[680px]">
       <PostHeader avatar={user?.avatar} name={user?.name} timeLine="방금 전" />
-      <PostEditor onPosting={handlePosting} previousMarkdown={previousMarkdown} />
+      <PostEditor
+        isMutating={isMutating}
+        onPosting={handlePosting}
+        previousMarkdown={previousMarkdown}
+      />
     </div>
   );
 };

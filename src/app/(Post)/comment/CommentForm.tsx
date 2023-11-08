@@ -10,7 +10,7 @@ import useSWRMutation from "swr/mutation";
 export const CommentForm = ({ user, parentPostId }: { user: User; parentPostId: number }) => {
   const router = useRouter();
 
-  const { trigger } = useSWRMutation(
+  const { trigger, isMutating } = useSWRMutation(
     "api/post",
     (url, { arg }: { arg: string }) =>
       mutateFetch(url, { body: { body: arg, userId: user?.id, parentPostId } }),
@@ -29,7 +29,7 @@ export const CommentForm = ({ user, parentPostId }: { user: User; parentPostId: 
   return (
     <div className="relative m-10 ring-1 ring-gray-300 rounded-xl p-5 w-[70%] bg-white max-w-[680px]">
       <PostHeader avatar={user?.avatar} name={user?.name} timeLine="방금 전" />
-      <PostEditor onPosting={handlePosting} />
+      <PostEditor onPosting={handlePosting} isMutating={isMutating} />
     </div>
   );
 };

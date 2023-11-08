@@ -10,7 +10,7 @@ import toastError from "@/utils/toastError";
 
 export default () => {
   const router = useRouter();
-  const { trigger } = useSWRMutation(
+  const { trigger, isMutating } = useSWRMutation(
     "/api/user",
     (
       key,
@@ -50,7 +50,7 @@ export default () => {
         <Input placeholder="checkPassword" id="Password" type="password" />
         <Input placeholder="name" id="name" type="text" />
         <Input placeholder="avatar" id="avatar" type="text" />
-        <Button fill={true} value={"Update"} type="submit" />
+        <Button fill={true} value={"Update"} type="submit" disabled={isMutating} />
       </form>
     </main>
   );

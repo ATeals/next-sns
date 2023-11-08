@@ -21,7 +21,8 @@ export const Button = ({
             "border-[1px] border-gray-300",
             fill ? "bg-black text-gray-300" : "",
             "p-2 px-4 m-2",
-            "rounded-lg"
+            "rounded-lg",
+            "flex justify-center"
           )}
         >
           <LoadingIndicator fill="gray" width={"20px"} height={"20px"} />
