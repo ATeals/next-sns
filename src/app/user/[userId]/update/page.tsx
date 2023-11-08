@@ -1,57 +1,15 @@
-"use client";
+import { authService, userService } from "@/server/services";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import UserUpdateForm from "./UserUpdateForm";
 
-import { Input } from "@/Ui/Atom/Input";
-import { Button } from "@/components/Ui/Atom/Button";
-import { Title } from "@/components/Ui/Atom/Title";
-import { useRouter } from "next/navigation";
-import useSWRMutation from "swr/mutation";
-import mutateFetch from "@/utils/mutateFetch";
-import toastError from "@/utils/toastError";
+export default async ({ params: { userId } }: { params: { userId: string } }) => {
+  const session = await authService.getSession(cookies());
+  const profileUser = await userService.getById(Number(userId));
 
-export default () => {
-  const router = useRouter();
-  const { trigger, isMutating } = useSWRMutation(
-    "/api/user",
-    (
-      key,
-      {
-        arg: { email, password, name, avatar },
-      }: { arg: { email: string; password: string; name: string; avatar: string } }
-    ) => mutateFetch(key, { body: { email, password, name, avatar }, method: "PATCH" }),
-    {
-      onSuccess: () => router.back(),
-      onError: () => toastError("유저 업데이트에 실패했습니다."),
-    }
-  );
+  if (!session?.user || !profileUser || session.user.id !== profileUser.id) {
+    redirect("/");
+  }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const emailInput = e.currentTarget[0] as HTMLInputElement;
-    const passwordInput = e.currentTarget[1] as HTMLInputElement;
-    const nameInput = e.currentTarget[2] as HTMLInputElement;
-    const avatarInput = e.currentTarget[3] as HTMLInputElement;
-
-    if (!(emailInput.value && passwordInput.value)) return toastError("비어있음 안됨!");
-
-    trigger({
-      email: emailInput.value,
-      password: passwordInput.value,
-      name: nameInput.value,
-      avatar: avatarInput.value,
-    });
-  };
-
-  return (
-    <main className="flex flex-col justify-center items-center h-screen">
-      <form onSubmit={handleSubmit} className="flex flex-col [&>*]:m-2">
-        <Title>Update!</Title>
-        <Input placeholder="checkEmail" id="Email" />
-        <Input placeholder="checkPassword" id="Password" type="password" />
-        <Input placeholder="name" id="name" type="text" />
-        <Input placeholder="avataUrl" id="avatar" type="text" />
-        <Button fill={true} value={"Update"} type="submit" disabled={isMutating} />
-      </form>
-    </main>
-  );
+  return <UserUpdateForm user={session.user} />;
 };
