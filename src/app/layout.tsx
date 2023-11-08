@@ -43,5 +43,27 @@ export default async function RootLayout(props: {
 }
 
 export const metadata = {
-  title: "CoffeeChat",
+  title: "CoffeeCat",
+  description: "커피챗 하는 고양이",
+  canonical: "https://www.carrotins.com",
+  openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    url: "https://coffeecat.vercel.app/",
+    title: "CoffeeCat",
+    site_name: "CoffeeCat",
+    images: [
+      {
+        url: "images/logoImg.webp",
+        width: 1900,
+        height: 630,
+        alt: "logo",
+      },
+    ],
+  },
+  twitter: {
+    handle: "@handle",
+    site: "@site",
+    cardType: "summary_large_image",
+  },
 };
