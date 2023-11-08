@@ -21,5 +21,9 @@ export const createUser = authService.ironSessionWrapper(async (req) => {
     data: { email, password: hashedPassword, name, avatar: avatar || null },
   });
 
+  req.session.user = { id: user.id, name: user.name, avatar: user.avatar };
+
+  await req.session.save();
+
   return NextResponse.json({}, { status: 200 });
 });

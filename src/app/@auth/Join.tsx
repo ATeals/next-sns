@@ -10,6 +10,7 @@ import toastError from "@/utils/toastError";
 
 export default () => {
   const router = useRouter();
+
   const { trigger, isMutating } = useSWRMutation(
     "/api/user",
     (
@@ -48,7 +49,7 @@ export default () => {
       <Input placeholder="Email" id="Email" />
       <Input placeholder="Password" id="Password" type="password" />
       <Input placeholder="name" id="name" type="text" />
-      <Input placeholder="avatar" id="avatar" type="text" />
+      <Input placeholder="avatarURl" id="avatar" type="text" />
       <Button fill={true} value={"Join"} type="submit" disabled={isMutating} />
     </form>
   );

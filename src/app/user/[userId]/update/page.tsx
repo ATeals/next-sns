@@ -49,7 +49,7 @@ export default () => {
         <Input placeholder="checkEmail" id="Email" />
         <Input placeholder="checkPassword" id="Password" type="password" />
         <Input placeholder="name" id="name" type="text" />
-        <Input placeholder="avatar" id="avatar" type="text" />
+        <Input placeholder="avataUrl" id="avatar" type="text" />
         <Button fill={true} value={"Update"} type="submit" disabled={isMutating} />
       </form>
     </main>

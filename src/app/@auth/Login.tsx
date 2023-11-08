@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import useSWRMutation from "swr/mutation";
 import mutateFetch from "@/utils/mutateFetch";
 import toastError from "@/utils/toastError";
+import { Avatar } from "@/components/Ui/Atom/Avatar";
 
 export default () => {
   const router = useRouter();
@@ -33,7 +34,11 @@ export default () => {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col [&>*]:m-2">
-      <Title>Hello</Title>
+      <div className="flex flex-col items-center">
+        <Avatar src={"/images/logo.webp"} size="xl" />
+        <Title>Hello</Title>
+      </div>
+
       <Input placeholder="Email" id="Email" />
       <Input placeholder="Password" id="Password" type="password" />
       <Button fill={true} value={"Login"} type="submit" disabled={isMutating} />

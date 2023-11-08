@@ -41,3 +41,7 @@ export default async function RootLayout(props: {
     </html>
   );
 }
+
+export const metadata = {
+  title: "CoffeeChat",
+};
