@@ -9,16 +9,19 @@ import { useState } from "react";
 interface CreatePostProps {
   onPosting: (markdown: string) => unknown;
   previousMarkdown?: string;
+  isMutating?: boolean;
 }
 
-export const PostEditor = ({ onPosting, previousMarkdown }: CreatePostProps) => {
+export const PostEditor = ({ onPosting, previousMarkdown, isMutating }: CreatePostProps) => {
   const [isWrite, setIsWrite] = useState(true);
   const [height, setheight] = useState("300px");
   const [markdown, setMarkdown] = useState<string | undefined>(previousMarkdown);
 
+  console.log(isMutating);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (markdown) onPosting(markdown);
+    if (markdown && !isMutating) onPosting(markdown);
   };
 
   return (
@@ -42,7 +45,7 @@ export const PostEditor = ({ onPosting, previousMarkdown }: CreatePostProps) => 
           value={isWrite ? "미리 보기" : "작성 하기"}
           onClick={() => setIsWrite((isWrite) => !isWrite)}
         />
-        <Button value={"게시"} fill={true} type="submit" />
+        <Button value={"게시"} fill={true} type="submit" disabled={isMutating} />
       </div>
     </form>
   );
