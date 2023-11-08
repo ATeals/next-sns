@@ -6,7 +6,8 @@ interface UpdateUser {
   id?: number;
   name?: string;
   phone?: number | null;
-  email?: string | null;
+  email?: string;
+  password?: string;
   avatar?: string | null;
   createdAt?: Date;
   updatedAt?: Date;
@@ -25,6 +26,10 @@ class UserService {
 
   getById(id: number) {
     return this.db.user.findUnique({ where: { id }, include: { posts: true } });
+  }
+
+  getByEmail(email: string) {
+    return this.db.user.findUnique({ where: { email } });
   }
 
   getFirstByName(name: string) {

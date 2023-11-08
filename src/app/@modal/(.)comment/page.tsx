@@ -1,7 +1,7 @@
 import { authService } from "@/server/services";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { CommentForm } from "./CommentForm";
+import { CommentForm } from "@/app/(Post)/comment/CommentForm";
 import { Modal } from "../Modal";
 
 export default async ({

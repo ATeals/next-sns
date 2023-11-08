@@ -32,7 +32,15 @@ export default async ({ params: { postId } }: { params: { postId: string } }) =>
               href={`/comment?parentPostId=${id}`}
             />
           )}
-          {owner.id === user.id && <DeleteButton postId={id} userId={user.id} />}
+          {owner.id === user.id && (
+            <>
+              <LinkIcon
+                defaultIcon="bi bi-pencil-square text-gray-500"
+                href={`/update?postId=${post.id}`}
+              />
+              <DeleteButton postId={id} userId={user.id} />
+            </>
+          )}
         </div>
         <PostFooter comments={post.childPosts} likes={post.likes} />
       </div>

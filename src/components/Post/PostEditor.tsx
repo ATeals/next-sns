@@ -8,12 +8,13 @@ import { useState } from "react";
 
 interface CreatePostProps {
   onPosting: (markdown: string) => unknown;
+  previousMarkdown?: string;
 }
 
-export const PostEditor = ({ onPosting }: CreatePostProps) => {
+export const PostEditor = ({ onPosting, previousMarkdown }: CreatePostProps) => {
   const [isWrite, setIsWrite] = useState(true);
   const [height, setheight] = useState("300px");
-  const [markdown, setMarkdown] = useState<string | undefined>();
+  const [markdown, setMarkdown] = useState<string | undefined>(previousMarkdown);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

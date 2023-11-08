@@ -7,20 +7,26 @@ import mutateFetch from "@/utils/mutateFetch";
 import { useRouter } from "next/navigation";
 import useSWRMutation from "swr/mutation";
 
-export const CommentForm = ({ user, parentPostId }: { user: User; parentPostId: number }) => {
+export const UpdateForm = ({
+  user,
+  postId,
+  previousMarkdown,
+}: {
+  user: User;
+  postId: number;
+  previousMarkdown: string;
+}) => {
   const router = useRouter();
 
   const { trigger } = useSWRMutation(
     "api/post",
     (url, { arg }: { arg: string }) =>
-      mutateFetch(url, { body: { body: arg, userId: user?.id, parentPostId } }),
+      mutateFetch(url, { body: { body: arg, id: postId }, method: "PATCH" }),
     {
       onSuccess: () => {
         router.back();
       },
-      onError: (err) => {
-        console.log(err);
-      },
+      onError: (err) => console.log(err),
     }
   );
 
@@ -31,7 +37,7 @@ export const CommentForm = ({ user, parentPostId }: { user: User; parentPostId: 
   return (
     <div className="relative m-10 ring-1 ring-gray-300 rounded-xl p-5 w-[70%] bg-white max-w-[680px]">
       <PostHeader avatar={user?.avatar} name={user?.name} timeLine="방금 전" />
-      <PostEditor onPosting={handlePosting} />
+      <PostEditor onPosting={handlePosting} previousMarkdown={previousMarkdown} />
     </div>
   );
 };
