@@ -54,7 +54,7 @@ export const metadata = {
     site_name: "CoffeeCat",
     images: [
       {
-        url: "/images/logoImg.webp",
+        url: "https://coffeecat.vercel.app/images/logoImg.webp",
         width: 500,
         height: 500,
         alt: "logo",
