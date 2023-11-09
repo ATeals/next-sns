@@ -24,7 +24,7 @@ export default async function RootLayout(props: {
       </head>
       <body className="overflow-auto">
         <SWRProvider>
-          {session ? (
+          {session?.user ? (
             <>
               <Header userId={String(session.user?.id)} />
               <main className="pt-[100px] min-h-screen w-full">{props.children}</main>
