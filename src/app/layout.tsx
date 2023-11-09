@@ -61,9 +61,4 @@ export const metadata = {
       },
     ],
   },
-  twitter: {
-    handle: "@handle",
-    site: "@site",
-    cardType: "summary_large_image",
-  },
 };
