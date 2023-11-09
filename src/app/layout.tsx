@@ -31,7 +31,7 @@ export default async function RootLayout(props: {
               {props.modal}
             </>
           ) : (
-            props.auth
+            <main>{props.auth}</main>
           )}
 
           <Footer />
