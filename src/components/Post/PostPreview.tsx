@@ -18,7 +18,6 @@ export default ({ post, user }: { post: Post; user: User }) => {
     user: { name: ownerName, avatar: ownerAvatar, id: ownerId },
     body,
     id,
-    childPosts,
     likes,
     updatedAt,
     depth,
@@ -33,7 +32,10 @@ export default ({ post, user }: { post: Post; user: User }) => {
     (url, { arg: { userId, postId } }: { arg: { userId: number; postId: number } }) =>
       mutateFetch(url, { body: { userId, postId } }),
     {
-      onSuccess: () => mutate(unstable_serialize(getKey)),
+      onSuccess: () => {
+        mutate(unstable_serialize(getKey));
+        mutate(`/api/user/${ownerId}/post`);
+      },
     }
   );
 
@@ -41,7 +43,12 @@ export default ({ post, user }: { post: Post; user: User }) => {
     "/api/like",
     (url, { arg: { userId, postId } }: { arg: { userId: number; postId: number } }) =>
       mutateFetch(url, { body: { userId, postId }, method: "DELETE" }),
-    { onSuccess: () => mutate(unstable_serialize(getKey)) }
+    {
+      onSuccess: () => {
+        mutate(unstable_serialize(getKey));
+        mutate(`/api/user/${ownerId}/post`);
+      },
+    }
   );
 
   return (

@@ -43,7 +43,7 @@ class PostService {
   getByUserId(userId: number) {
     return this.db.post.findMany({
       where: { userId },
-      include: { childPosts: true },
+      include: { childPosts: { include: { user: true } }, user: true, likes: true },
       orderBy: { updatedAt: "desc" },
     });
   }
