@@ -11,7 +11,7 @@ export default () => {
   useEffect(() => {
     const id = setTimeout(() => {
       setIsLoadingLong(true);
-    }, 5000);
+    }, 3000);
 
     () => clearTimeout(id);
   }, []);

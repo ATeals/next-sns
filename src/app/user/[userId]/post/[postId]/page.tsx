@@ -42,7 +42,7 @@ export default async ({ params: { postId } }: { params: { postId: string } }) =>
             </>
           )}
         </div>
-        <PostFooter comments={post.childPosts} likes={post.likes} />
+        <PostFooter post={post} />
       </div>
       <div className="m-10 w-[60%]">
         {post.childPosts?.map((post) => (

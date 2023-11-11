@@ -19,7 +19,6 @@ export interface Post {
 }
 
 export interface Like {
-  id: number;
   createdAt: Date;
   userId?: number;
   postId?: number;

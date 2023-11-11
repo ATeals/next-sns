@@ -1,16 +1,10 @@
 import { Like, Post } from "@/types";
 import { Avatar } from "../Ui/Atom/Avatar";
 import { Description } from "../Ui/Atom/Description";
+import Link from "next/link";
 
-export const PostFooter = ({
-  postId,
-  comments,
-  likes,
-}: {
-  postId?: number;
-  comments?: Post[];
-  likes?: Like[];
-}) => {
+export const PostFooter = ({ post }: { post: Post }) => {
+  const { likes, user: owner, id } = post;
   return (
     <div className="flex items-center [&>*]:px-1">
       <div className="m-2 ml-0">
@@ -21,7 +15,11 @@ export const PostFooter = ({
         />
       </div>
 
-      <Description size="sm">댓글 {comments?.length || 0}개</Description>
+      <Link href={`/user/${owner.id}/post/${id}`}>
+        <Description className="hover:underline" size="sm">
+          댓글 {post?.childPosts?.length || 0}개
+        </Description>
+      </Link>
       <Description size="sm">좋아요 {likes?.length || 0}개</Description>
     </div>
   );

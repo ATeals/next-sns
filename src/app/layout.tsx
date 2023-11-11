@@ -43,6 +43,7 @@ export default async function RootLayout(props: {
 }
 
 export const metadata = {
+  metadataBase: new URL("https://coffeecat.vercel.app/"),
   title: "CoffeeCat",
   description: "커피챗 하는 고양이",
   canonical: "https://www.carrotins.com",
@@ -54,7 +55,7 @@ export const metadata = {
     site_name: "CoffeeCat",
     images: [
       {
-        url: "/images/logo.jpeg",
+        url: "images/logo.jpeg",
         width: 500,
         height: 500,
         alt: "logo",

@@ -5,14 +5,13 @@ import { Post, User } from "@/types";
 import PostPreview from "@/components/Post/PostPreview";
 import { LoadingIndicator } from "@/components/Ui/Atom/LoadingIndicator";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
-import { useEffect } from "react";
 
 interface PreviousPageData {
   nextCursor: number;
   posts: Post[];
 }
 
-const getKey = (pageIndex: number, previousPageData: PreviousPageData) => {
+export const getKey = (pageIndex: number, previousPageData: PreviousPageData) => {
   if (previousPageData && previousPageData.posts.length === 0) return null;
 
   if (pageIndex == 0) return `/api/post?cursor=0&limit=${5}`;

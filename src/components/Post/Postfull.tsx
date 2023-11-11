@@ -8,7 +8,7 @@ import { PostFooter } from "./PostFooter";
 
 export default ({ post }: { post: Post }) => {
   const {
-    user: { name, avatar, id },
+    user: { name, avatar },
     body,
   } = post;
 
@@ -18,7 +18,7 @@ export default ({ post }: { post: Post }) => {
         <PostHeader name={name} avatar={avatar} />
         <PostBody children={body} className="h-[300px] w-[400px] overflow-hidden" />
       </Link>
-      <PostFooter />
+      <PostFooter post={post} />
     </div>
   );
 };
