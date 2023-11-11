@@ -8,6 +8,12 @@ import useSWRMutation from "swr/mutation";
 import mutateFetch from "@/utils/mutateFetch";
 import toastError from "@/utils/toastError";
 import { Avatar } from "@/components/Ui/Atom/Avatar";
+import { useForm } from "react-hook-form";
+
+interface LoginForm {
+  email: string;
+  password: string;
+}
 
 export default () => {
   const router = useRouter();
@@ -21,26 +27,46 @@ export default () => {
     }
   );
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const {
+    formState: { errors },
+    register,
+    handleSubmit,
+  } = useForm<LoginForm>();
 
-    const emailInput = e.currentTarget[0] as HTMLInputElement;
-    const passwordInput = e.currentTarget[1] as HTMLInputElement;
-
-    if (!(emailInput.value && passwordInput.value)) return toastError("비어있음 안됨!");
-
-    trigger({ email: emailInput.value, password: passwordInput.value });
+  const onSubmit = (data: LoginForm) => {
+    const { email, password } = data;
+    trigger({ email, password });
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col [&>*]:m-2">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col [&>*]:m-2 w-[50%]">
       <div className="flex flex-col items-center">
         <Avatar src={"/images/logo.webp"} size="xl" />
         <Title>Hello</Title>
       </div>
 
-      <Input placeholder="Email" id="Email" />
-      <Input placeholder="Password" id="Password" type="password" />
+      <Input
+        placeholder="Email"
+        id="Email"
+        {...register("email", {
+          required: "이메일은 필수입니다.",
+          pattern: {
+            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+            message: "올바른 이메일 주소를 입력하세요.",
+          },
+        })}
+      />
+      <span className="text-red-500">{errors.email && errors.email.message}</span>
+
+      <Input
+        placeholder="Password"
+        id="Password"
+        type="password"
+        {...register("password", { required: "비밀번호는 필수입니다." })}
+      />
+
+      <span className="text-red-500">{errors.password && errors.password.message}</span>
+
       <Button fill={true} value={"Login"} type="submit" disabled={isMutating} />
     </form>
   );

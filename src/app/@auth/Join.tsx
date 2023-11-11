@@ -7,6 +7,14 @@ import { useRouter } from "next/navigation";
 import useSWRMutation from "swr/mutation";
 import mutateFetch from "@/utils/mutateFetch";
 import toastError from "@/utils/toastError";
+import { useForm } from "react-hook-form";
+
+interface JoinForm {
+  email: string;
+  password: string;
+  name: string;
+  avatar: string;
+}
 
 export default () => {
   const router = useRouter();
@@ -25,31 +33,53 @@ export default () => {
     }
   );
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const {
+    formState: { errors },
+    register,
+    handleSubmit,
+  } = useForm<JoinForm>();
 
-    const emailInput = e.currentTarget[0] as HTMLInputElement;
-    const passwordInput = e.currentTarget[1] as HTMLInputElement;
-    const nameInput = e.currentTarget[2] as HTMLInputElement;
-    const avatarInput = e.currentTarget[3] as HTMLInputElement;
+  const onSubmit = (data: JoinForm) => {
+    const { email, password, name, avatar } = data;
 
-    if (!(emailInput.value && passwordInput.value)) return toastError("비어있음 안됨!");
-
-    trigger({
-      email: emailInput.value,
-      password: passwordInput.value,
-      name: nameInput.value,
-      avatar: avatarInput.value,
-    });
+    trigger({ email, password, name, avatar });
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col [&>*]:m-2">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col [&>*]:m-2">
       <Title>Join!</Title>
-      <Input placeholder="Email" id="Email" />
-      <Input placeholder="Password" id="Password" type="password" />
-      <Input placeholder="name" id="name" type="text" />
-      <Input placeholder="avatarURl" id="avatar" type="text" />
+      <Input
+        placeholder="Email"
+        id="Email"
+        {...register("email", { required: "이메일은 필수입니다." })}
+      />
+      <span className="text-red-500">{errors.email && errors.email.message}</span>
+
+      <Input
+        placeholder="Password"
+        id="Password"
+        type="password"
+        {...register("password", { required: "비밀번호는 필수입니다." })}
+      />
+      <span className="text-red-500">{errors.password && errors.password.message}</span>
+
+      <Input
+        placeholder="name"
+        id="name"
+        type="text"
+        {...register("name", {
+          required: "이름은 필수입니다.",
+          pattern: {
+            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+            message: "올바른 이메일 주소를 입력하세요.",
+          },
+        })}
+      />
+      <span className="text-red-500">{errors.name && errors.name.message}</span>
+
+      <Input placeholder="avatarURl" id="avatar" type="text" {...register("avatar")} />
+      <span className="text-red-500">{errors.avatar && errors.avatar.message}</span>
+
       <Button fill={true} value={"Join"} type="submit" disabled={isMutating} />
     </form>
   );
