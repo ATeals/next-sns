@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 
 export const createUser = authService.ironSessionWrapper(async (req) => {
-  const { email, password, name, avatar } = await req.json();
+  const { email, password, confirmPassword, name, avatar } = await req.json();
 
   if (!(email && password && name)) {
     return NextResponse.json({ error: "Input Required" }, { status: 400 });
@@ -14,6 +14,9 @@ export const createUser = authService.ironSessionWrapper(async (req) => {
   if (AlreadyCreatedUser) {
     return NextResponse.json({ error: `email ${email} is already created` }, { status: 400 });
   }
+
+  if (confirmPassword !== password)
+    return NextResponse.json({ error: `Not Match password and confirm password` }, { status: 400 });
 
   const hashedPassword = await bcrypt.hash(password, 5);
 

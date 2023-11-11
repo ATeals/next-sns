@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 interface JoinForm {
   email: string;
   password: string;
+  confirmPassword: string;
   name: string;
   avatar: string;
 }
@@ -21,12 +22,8 @@ export default () => {
 
   const { trigger, isMutating } = useSWRMutation(
     "/api/user",
-    (
-      key,
-      {
-        arg: { email, password, name, avatar },
-      }: { arg: { email: string; password: string; name: string; avatar: string } }
-    ) => mutateFetch(key, { body: { email, password, name, avatar } }),
+    (key, { arg: { email, password, name, avatar, confirmPassword } }: { arg: JoinForm }) =>
+      mutateFetch(key, { body: { email, password, confirmPassword, name, avatar } }),
     {
       onSuccess: () => router.refresh(),
       onError: () => toastError("가입에 실패했습니다."),
@@ -37,16 +34,19 @@ export default () => {
     formState: { errors },
     register,
     handleSubmit,
+    watch,
   } = useForm<JoinForm>();
 
   const onSubmit = (data: JoinForm) => {
-    const { email, password, name, avatar } = data;
+    const { email, password, confirmPassword, name, avatar } = data;
 
-    trigger({ email, password, name, avatar });
+    trigger({ email, password, name, avatar, confirmPassword });
   };
 
+  const password = watch("password");
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col [&>*]:m-2">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col [&>*]:m-2 w-[50%]">
       <Title>Join!</Title>
       <Input
         placeholder="Email"
@@ -64,15 +64,24 @@ export default () => {
       <span className="text-red-500">{errors.password && errors.password.message}</span>
 
       <Input
+        placeholder="confirmPassword"
+        id="confirmPassword"
+        type="password"
+        {...register("confirmPassword", {
+          required: "비밀번호 확인은 필수입니다.",
+          validate: (value) => value === password || "비밀번호가 일치하지 않습니다.",
+        })}
+      />
+      <span className="text-red-500">
+        {errors.confirmPassword && errors.confirmPassword.message}
+      </span>
+
+      <Input
         placeholder="name"
         id="name"
         type="text"
         {...register("name", {
           required: "이름은 필수입니다.",
-          pattern: {
-            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-            message: "올바른 이메일 주소를 입력하세요.",
-          },
         })}
       />
       <span className="text-red-500">{errors.name && errors.name.message}</span>
