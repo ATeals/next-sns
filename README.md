@@ -54,14 +54,23 @@ https://coffeecat.vercel.app/
 
 # Feature
 
-유저 CRU
+### 유저 CRU
 
-    Parallel Routes 를 이용하여 쿠키를 통한 인증 구현
+---
 
-게시글 CRUD
+서버 컴포넌트와 Parallel Routes를 이용하여 쿠키를 통한 인증 구현
 
-    Parallel Routes & Intercepting Routes 를 이용하여 모달 구현
-    마크다운을 이용한 게시글
+### 게시글 CRUD
+
+---
+
+마크다운을 이용한 게시글
+
+[useSWRInfinite](https://github.com/ATeals/next-sns/blob/main/src/app/PostInfinityList.tsx)를 이용한 무한 스크롤 구현
+
+[useSWRMutation](<https://github.com/ATeals/next-sns/blob/main/src/app/(Post)/write/WriteForm.tsx>)을 이용한 게시글 mutate
+
+[Parallel Routes & Intercepting Routes](<https://github.com/ATeals/next-sns/blob/main/src/app/%40modal/(.)comment/page.tsx>)를 이용하여 모달 구현
 
 # 고민 사항
 
@@ -74,3 +83,5 @@ Post 컴포넌트에서 Update, delete, Like 와 같이 mutate가 필요한 버�
 - app router를 사용했지만 app라우터 모델과는 관련 없는 코드를 작성한 것 같다. 지금 내코드는 page router를 사용해도 특별히 문제가 없다. 좀더 app router의 방식을 탐구해볼 필요가 있다.
 
 - 코드를 너무 낮은 레벨에서 부터 추상화를 생각하면서 작성 했던 것 같다. 전체적인 기능 틀을 먼저 구현하고 이후 천천히 리팩토링하는 방법이 귀찮아도 가장 빠르고 확실한 방법이라고 느꼈다. 오히려 처음부터 완벽하게 추상화 한다는 것인 말이 안된다.
+
+- 프로젝트의 규모가 커질수록 도메인 별로 코드를 관리하는게 효과적인 방법이라고 생각하는데 이번 코드는 그렇지 못했다. 지금 코드를 보니 post 도메인으로 묶어볼 수 있을 것 같은데 리팩토링 해봐야 겠다.
