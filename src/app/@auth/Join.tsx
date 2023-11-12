@@ -8,6 +8,8 @@ import useSWRMutation from "swr/mutation";
 import mutateFetch from "@/utils/mutateFetch";
 import toastError from "@/utils/toastError";
 import { useForm } from "react-hook-form";
+import { Avatar } from "@/components/Ui/Atom/Avatar";
+import { DEFAULT_AVATAR } from "@/constants";
 
 interface JoinForm {
   email: string;
@@ -44,10 +46,12 @@ export default () => {
   };
 
   const password = watch("password");
+  const avatar = watch("avatar");
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col [&>*]:m-2 w-[50%]">
       <Title>Join!</Title>
+      <Avatar size="xl" src={avatar || DEFAULT_AVATAR} />
       <Input
         placeholder="Email"
         id="Email"
