@@ -1,10 +1,12 @@
 # Next.js SNS Clone
 
+<p>
 <img src="https://img.shields.io/badge/Next.js-000?&style=for-the-badge&logo=next.js&logoColor=white">
 <img src="https://img.shields.io/badge/Typescript-3178C6?&style=for-the-badge&logo=Typescript&logoColor=white">
 <img src="https://img.shields.io/badge/Prisma-2D3748?&style=for-the-badge&logo=Prisma&logoColor=white">
 <img src="https://img.shields.io/badge/Tailwindcss-06B6D4?&style=for-the-badge&logo=Tailwindcss&logoColor=white">
 <img src="https://img.shields.io/badge/SWR-000?&style=for-the-badge&logo=SWR&logoColor=white">
+</p>
 
 # Release
 
