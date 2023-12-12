@@ -52,7 +52,7 @@ export default ({ post, user }: { post: Post; user: User }) => {
   );
 
   return (
-    <div className="border-2 border-gray rounded-lg p-5">
+    <div className="border-2 border-gray rounded-lg p-5 min-w-[480px]">
       <Link href={`/user/${ownerId}`}>
         <PostHeader name={ownerName} avatar={ownerAvatar} timeLine={updatedAt?.toString()} />
       </Link>

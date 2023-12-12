@@ -21,7 +21,6 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@/server/*": ["./server/*"],
       "@/Ui/*": ["./src/components/Ui/*"]
     }
   },
