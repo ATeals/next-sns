@@ -10,6 +10,7 @@ import { SWRProvider } from "@/components/SWR/SWRProvider";
 
 import "@/styles/globals.css";
 import "react-toastify/dist/ReactToastify.css";
+import { QueryProvider } from "@/components/QueryClient";
 
 export default async function RootLayout(props: {
   children: React.ReactNode;
@@ -23,20 +24,22 @@ export default async function RootLayout(props: {
         <link rel="stylesheet" href={BOOT_STRAP_LINK} />
       </head>
       <body className="overflow-auto">
-        <SWRProvider>
-          {session?.user ? (
-            <>
-              <Header userId={String(session.user?.id)} />
-              <main className="pt-[100px] min-h-screen w-full">{props.children}</main>
-              {props.modal}
-            </>
-          ) : (
-            <main>{props.auth}</main>
-          )}
+        <QueryProvider>
+          <SWRProvider>
+            {session?.user ? (
+              <>
+                <Header userId={String(session.user?.id)} />
+                <main className="pt-[100px] min-h-screen w-full">{props.children}</main>
+                {props.modal}
+              </>
+            ) : (
+              <main>{props.auth}</main>
+            )}
 
-          <Footer />
-          <ToastContainer />
-        </SWRProvider>
+            <Footer />
+            <ToastContainer />
+          </SWRProvider>
+        </QueryProvider>
       </body>
     </html>
   );

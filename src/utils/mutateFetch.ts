@@ -3,14 +3,13 @@ type MutationMethod = "DELETE" | "PATCH" | "POST" | "PUT";
 interface mutateOption<T> {
   method?: MutationMethod;
   body?: T;
-  searchParams?: string;
 }
 const mutateFetch = async <T>(
   url: string,
-  { method = "POST", body, searchParams = "" }: mutateOption<T> = {}
+  { method = "POST", body }: mutateOption<T> = {}
 ): Promise<T | void> => {
   try {
-    const response = await fetch(url + "?" + searchParams, {
+    const response = await fetch(url, {
       body: JSON.stringify(body),
       headers: {
         "Content-Type": "application/json",

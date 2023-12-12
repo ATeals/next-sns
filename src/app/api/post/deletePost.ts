@@ -12,15 +12,19 @@ interface Post {
 }
 
 export const deletePost = authService.ironSessionWrapper(async (req) => {
-  const owner = req.session.user;
+  const user = req.session.user;
   const reqBody: Post = await req.json();
 
-  if (!owner?.id) return NextResponse.json({ error: "Not Found User" }, { status: 404 });
+  if (!user?.id) return NextResponse.json({ error: "Not Found User" }, { status: 404 });
   if (!reqBody?.id) return NextResponse.json({ error: "The body is required" }, { status: 400 });
 
-  const { id: postId, userId } = reqBody;
+  const postId = Number(reqBody.id);
 
-  if (userId !== owner.id) return NextResponse.json({ error: "Not Allowed" }, { status: 400 });
+  const post = await postService.getById(postId);
+
+  if (!post) return NextResponse.json({ error: "Not Found Post" }, { status: 404 });
+
+  if (post.user.id !== user.id) return NextResponse.json({ error: "Not Allowed" }, { status: 400 });
 
   await postService.delete(postId);
 
