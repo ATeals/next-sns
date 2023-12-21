@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("PLANETSCALE_DATABASE_URL")
+  relationMode = "prisma"
 }
 
 model User {
@@ -27,7 +28,7 @@ model Post {
   updatedAt    DateTime @default(now()) @updatedAt
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   userId       Int
-  parentPost   Post?    @relation("ChildPosts", fields: [parentPostId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  parentPost   Post?    @relation("ChildPosts", fields: [parentPostId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   parentPostId Int?
   childPosts   Post[]   @relation("ChildPosts")
   likes        Like[]
@@ -42,7 +43,7 @@ model Like {
   userId    Int
   postId    Int
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  post      Post     @relation(fields: [postId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@id([userId, postId])
   @@index([postId])
