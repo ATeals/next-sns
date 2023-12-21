@@ -1,38 +1,38 @@
 "use client";
 
-import useSWRInfinite from "swr/infinite";
-import { Post, User } from "@/types";
-import PostPreview from "@/components/Post/PostPreview";
+import { User } from "@/types";
 import { LoadingIndicator } from "@/components/Ui/Atom/LoadingIndicator";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import { Post } from "@/client/post/components";
+import { useInfinityPosts } from "@/client/post/hooks";
 
-interface PreviousPageData {
-  nextCursor: number;
-  posts: Post[];
-}
-
-export const getKey = (pageIndex: number, previousPageData: PreviousPageData) => {
-  if (previousPageData && previousPageData.posts.length === 0) return null;
-
-  if (pageIndex == 0) return `/api/post?cursor=0&limit=${5}`;
-
-  return `/api/post?cursor=${previousPageData.nextCursor}&limit=${5}`;
-};
+import Link from "next/link";
 
 export const PostInfinityList = ({ user }: { user: User }) => {
-  const { data, setSize, isValidating } = useSWRInfinite<PreviousPageData>(getKey);
-  const { bottomItemRef } = useIntersectionObserver(() => setSize((size) => size + 1));
-
-  const posts = data?.flatMap((page) => page.posts);
-  const nextCursor = data?.at(-1)?.nextCursor;
+  const { posts, pageCursor, fetchNextPage, isFetchingNextPage } = useInfinityPosts();
+  const { bottomItemRef } = useIntersectionObserver(() => fetchNextPage());
 
   return (
     <div className="w-[70%] [&>*]:m-10">
       {posts?.map((post) => (
-        <PostPreview post={post} key={post.id} user={user} />
+        <Post post={post} key={post.id}>
+          <Post.Header />
+          <Link href={`/user/${post.userId}/post/${post.id}`}>
+            <Post.Body className="h-[300px] overflow-hidden" />
+          </Link>
+          <Post.ModifierMenu>
+            <Post.CommentButton />
+            <Post.DeleteButton />
+          </Post.ModifierMenu>
+          <Post.Footer />
+        </Post>
       ))}
       <div className="flex justify-center">
-        {isValidating ? <LoadingIndicator /> : <>{nextCursor && <div ref={bottomItemRef} />}</>}
+        {isFetchingNextPage ? (
+          <LoadingIndicator />
+        ) : (
+          pageCursor !== 0 && <div ref={bottomItemRef} />
+        )}
       </div>
     </div>
   );

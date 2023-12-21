@@ -1,4 +1,4 @@
-type MutationMethod = "DELETE" | "PATCH" | "POST" | "PUT";
+export type MutationMethod = "DELETE" | "PATCH" | "POST" | "PUT";
 
 interface mutateOption<T> {
   method?: MutationMethod;

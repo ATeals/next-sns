@@ -68,6 +68,7 @@ class PostService {
   }
 
   async delete(id: number) {
+    await this.db.post.updateMany({ where: { parentPostId: id }, data: { parentPostId: null } });
     await this.db.post.delete({ where: { id } });
     return;
   }
