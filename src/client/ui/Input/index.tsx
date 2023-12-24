@@ -1,4 +1,4 @@
-import { generateClassName } from "@/utils";
+import { generateClassName } from "@/client/common/utils";
 import { forwardRef } from "react";
 
 interface InputProps extends React.HTMLProps<HTMLInputElement> {

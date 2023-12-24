@@ -3,7 +3,7 @@
 import { Post } from "@/client/post/components";
 import { Post as PostType } from "@/client/post/type";
 import { LoadingIndicator, Title } from "@/client/ui";
-import { User } from "@/types";
+import { User } from "@/client/common/types";
 import Link from "next/link";
 import useSWR from "swr";
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { generateClassName } from "@/utils/generateClassName";
+import { generateClassName } from "@/client/common/utils/generateClassName";
 
 interface InputBoxProps extends React.HTMLProps<HTMLTextAreaElement> {
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => unknown;

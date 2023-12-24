@@ -4,9 +4,9 @@ import { useContext } from "react";
 import { postContext } from "./Main";
 import { Avatar, Title } from "@/client/ui";
 import { Description } from "@/client/ui";
-import { elapsedTime } from "@/utils";
-import { DEFAULT_AVATAR } from "@/constants";
-import { User } from "@/types";
+import { elapsedTime } from "@/client/common/utils";
+import { DEFAULT_AVATAR } from "@/config";
+import { User } from "@/client/common/types";
 
 export const Header = ({ user }: { user?: User }) => {
   const post = useContext(postContext);

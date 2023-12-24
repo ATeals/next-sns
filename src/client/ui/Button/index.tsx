@@ -1,4 +1,4 @@
-import { generateClassName } from "@/utils/generateClassName";
+import { generateClassName } from "@/client/common/utils/generateClassName";
 import { LoadingIndicator } from "../LoadingIndicator";
 
 interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {

@@ -1,5 +1,5 @@
 import { ProfileBox } from "@/client/ui";
-import { DEFAULT_AVATAR } from "@/constants";
+import { DEFAULT_AVATAR } from "@/config";
 import { userService } from "@/server/services";
 import Link from "next/link";
 

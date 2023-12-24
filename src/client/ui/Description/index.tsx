@@ -1,6 +1,6 @@
 "use client";
 
-import { generateClassName } from "@/utils/generateClassName";
+import { generateClassName } from "@/client/common/utils/generateClassName";
 import { HtmlHTMLAttributes, ReactNode } from "react";
 
 type TitleProps = Omit<HtmlHTMLAttributes<HTMLParagraphElement>, "className" | "children"> & {

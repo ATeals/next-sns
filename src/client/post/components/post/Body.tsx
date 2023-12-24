@@ -2,7 +2,7 @@
 
 import { useContext } from "react";
 import { postContext } from "./Main";
-import { generateClassName } from "@/utils";
+import { generateClassName } from "@/client/common/utils";
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";

@@ -1,4 +1,4 @@
-import mutateFetch from "@/utils/mutateFetch";
+import mutateFetch from "@/client/common/utils/mutateFetch";
 import useSWRMutation from "swr/mutation";
 import { useRouter } from "next/navigation";
 import { ButtonIcon } from "@/client/ui";

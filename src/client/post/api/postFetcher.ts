@@ -1,4 +1,4 @@
-import mutateFetch from "@/utils/mutateFetch";
+import mutateFetch from "@/client/common/utils/mutateFetch";
 import { Post } from "../type";
 
 export interface PostsResponse {

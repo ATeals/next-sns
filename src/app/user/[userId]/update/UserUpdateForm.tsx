@@ -2,11 +2,11 @@
 
 import { useRouter } from "next/navigation";
 import useSWRMutation from "swr/mutation";
-import mutateFetch from "@/utils/mutateFetch";
-import toastError from "@/utils/toastError";
-import { User } from "@/types";
+import mutateFetch from "@/client/common/utils/mutateFetch";
+import toastError from "@/client/common/utils/toastError";
+import { User } from "@/client/common/types";
 import { useForm } from "react-hook-form";
-import { DEFAULT_AVATAR } from "@/constants";
+import { DEFAULT_AVATAR } from "@/config";
 import { Avatar, Button, Input, Title } from "@/client/ui";
 
 interface UpdateForm {

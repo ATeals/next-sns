@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { postFetcher } from "../api/postFetcher";
 import { POST_QUERY_KEY } from "../constants";
-import { queryClient } from "@/client/common/QueryClient";
+import { queryClient } from "@/client/common/provider/QueryClient";
 
 export const useCreatePostMutation = ({
   onSuccess,

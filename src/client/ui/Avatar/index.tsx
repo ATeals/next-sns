@@ -1,4 +1,4 @@
-import { generateClassName } from "@/utils";
+import { generateClassName } from "@/client/common/utils";
 
 interface AvatarProps extends Omit<React.HTMLProps<HTMLImageElement>, "size"> {
   size?: "sm" | "md" | "lg" | "xl";

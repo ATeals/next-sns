@@ -1,5 +1,5 @@
 import { LinkIcon } from "@/client/ui";
-import { HEAD_NAVIGATIONS } from "@/constants";
+import { HEAD_NAVIGATIONS } from "./constants";
 
 export default ({ pathList }: { pathList: string[] }) => {
   return (

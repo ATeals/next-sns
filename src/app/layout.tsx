@@ -3,14 +3,14 @@ import { ToastContainer } from "react-toastify";
 import { authService } from "@/server/services";
 import { cookies } from "next/headers";
 
-import { BOOT_STRAP_LINK } from "@/constants";
+import { BOOT_STRAP_LINK } from "@/config";
 
 import "@/styles/globals.css";
 
 import "react-toastify/dist/ReactToastify.css";
-import { Footer } from "@/client/common/Footer";
-import { Header } from "@/client/common/Header";
-import { QueryProvider } from "@/client/common/QueryClient";
+import { Footer } from "@/client/common/components/Footer";
+import { Header } from "@/client/common/components/Header";
+import { QueryProvider } from "@/client/common/provider/QueryClient";
 
 export default async function RootLayout(props: {
   children: React.ReactNode;

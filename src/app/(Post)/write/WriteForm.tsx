@@ -3,7 +3,7 @@
 import { Post } from "@/client/post/components";
 import { useCreatePostMutation } from "@/client/post/hooks";
 
-import { User } from "@/types";
+import { User } from "@/client/common/types";
 import { useRouter } from "next/navigation";
 
 export const WriteForm = ({ user }: { user: User }) => {

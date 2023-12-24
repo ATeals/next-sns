@@ -4,11 +4,11 @@ import { Button, Input } from "@/client/ui";
 import { Title } from "@/client/ui";
 import { useRouter } from "next/navigation";
 import useSWRMutation from "swr/mutation";
-import mutateFetch from "@/utils/mutateFetch";
-import toastError from "@/utils/toastError";
+import mutateFetch from "@/client/common/utils/mutateFetch";
+import toastError from "@/client/common/utils/toastError";
 import { useForm } from "react-hook-form";
 import { Avatar } from "@/client/ui";
-import { DEFAULT_AVATAR } from "@/constants";
+import { DEFAULT_AVATAR } from "@/config";
 
 interface JoinForm {
   email: string;

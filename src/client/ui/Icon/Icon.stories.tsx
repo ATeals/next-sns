@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Icon } from "./Icon";
-import { BOOT_STRAP_LINK } from "@/constants";
+import { BOOT_STRAP_LINK } from "@/config";
 
 const meta: Meta<typeof Icon> = {
   title: "ATOM/Icon",

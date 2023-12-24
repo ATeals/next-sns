@@ -1,7 +1,7 @@
 "use client";
 
-import { User } from "@/types";
-import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import { User } from "@/client/common/types";
+import { useIntersectionObserver } from "@/client/common/hooks/useIntersectionObserver";
 import { Post } from "@/client/post/components";
 import { useInfinityPosts } from "@/client/post/hooks";
 

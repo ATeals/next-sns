@@ -1,4 +1,4 @@
-import { Like, User } from "@/types";
+import { Like, User } from "@/client/common/types";
 
 export interface Post {
   id: number;
