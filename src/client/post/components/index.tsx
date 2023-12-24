@@ -1,3 +1,5 @@
+"use client";
+
 import { Body } from "./post/Body";
 import { Editer } from "./post/Editer";
 import { Footer } from "./post/Footor";
@@ -6,6 +8,7 @@ import { Main } from "./post/Main";
 import { CommentButton } from "./Modifier/CommentButton";
 import { DeleteButton } from "./Modifier/DeleteButton";
 import { ModifierMenu } from "./Modifier/Menu";
+import { UpdateButton } from "./Modifier/UpdateButton";
 
 export const Post = Object.assign(Main, {
   Body,
@@ -15,4 +18,5 @@ export const Post = Object.assign(Main, {
   ModifierMenu,
   CommentButton,
   DeleteButton,
+  UpdateButton,
 });

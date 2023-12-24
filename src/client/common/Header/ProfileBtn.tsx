@@ -1,4 +1,4 @@
-import { LinkIcon } from "../Ui/Atom/Icon/LinkIcon";
+import { LinkIcon } from "@/client/ui";
 
 export default ({ userId, pathList }: { userId: string; pathList: string[] }) => {
   return (

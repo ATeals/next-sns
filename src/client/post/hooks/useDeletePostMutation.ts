@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { postFetcher } from "../api/postFetcher";
-import { queryClient } from "@/components/QueryClient";
 import { POST_QUERY_KEY } from "../constants";
+import { queryClient } from "@/client/common/QueryClient";
 
 export const useDeletePostMutation = (
   postId: string,

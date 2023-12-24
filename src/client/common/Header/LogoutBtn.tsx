@@ -1,7 +1,7 @@
 import mutateFetch from "@/utils/mutateFetch";
-import { ButtonIcon } from "../Ui/Atom/Icon/ButtonIcon";
 import useSWRMutation from "swr/mutation";
 import { useRouter } from "next/navigation";
+import { ButtonIcon } from "@/client/ui";
 
 export default () => {
   const router = useRouter();

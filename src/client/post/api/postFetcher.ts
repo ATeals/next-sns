@@ -7,7 +7,8 @@ export interface PostsResponse {
 }
 
 export const postFetcher = {
-  create: (body: { body: string; parentPostId?: string }) => mutateFetch("/api/post", { body }),
+  create: (body: { body: string; parentPostId?: number; userId: string }) =>
+    mutateFetch("/api/post", { body }),
 
   update: ({ body, id }: { body: string; id: string }) =>
     mutateFetch("/api/post", { body: { body, id }, method: "PATCH" }),

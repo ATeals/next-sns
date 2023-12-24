@@ -1,12 +1,12 @@
 "use client";
 
 import { User } from "@/types";
-import { LoadingIndicator } from "@/components/Ui/Atom/LoadingIndicator";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { Post } from "@/client/post/components";
 import { useInfinityPosts } from "@/client/post/hooks";
 
 import Link from "next/link";
+import { LoadingIndicator } from "@/client/ui";
 
 export const PostInfinityList = ({ user }: { user: User }) => {
   const { posts, pageCursor, fetchNextPage, isFetchingNextPage } = useInfinityPosts();
@@ -23,6 +23,7 @@ export const PostInfinityList = ({ user }: { user: User }) => {
           <Post.ModifierMenu>
             <Post.CommentButton />
             <Post.DeleteButton />
+            <Post.UpdateButton />
           </Post.ModifierMenu>
           <Post.Footer />
         </Post>

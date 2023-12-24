@@ -1,6 +1,6 @@
-import { Title } from "@/components/Ui/Atom/Title";
-import { Avatar } from "@/components/Ui/Atom/Avatar";
-import { Description } from "@/components/Ui/Atom/Description";
+import { Title } from "@/client/ui";
+import { Avatar } from "@/client/ui";
+import { Description } from "@/client/ui";
 
 interface ProfileBoxProps extends React.HTMLProps<HTMLDivElement> {
   title: string;

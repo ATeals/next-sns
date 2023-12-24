@@ -1,3 +1,5 @@
+"use client";
+
 import { useContext } from "react";
 import { postContext } from "./Main";
 import { generateClassName } from "@/utils";

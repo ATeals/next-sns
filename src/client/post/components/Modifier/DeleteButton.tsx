@@ -1,7 +1,9 @@
-import { ButtonIcon } from "@/components/Ui/Atom/Icon/ButtonIcon";
+"use client";
+
 import { useDeletePostMutation } from "../../hooks";
 import { useContext } from "react";
 import { postContext } from "../post/Main";
+import { ButtonIcon } from "@/client/ui";
 
 export const DeleteButton = () => {
   const post = useContext(postContext);

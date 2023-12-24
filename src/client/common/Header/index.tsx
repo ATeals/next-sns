@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import DefaultNavigationBtn from "./DefaultNavigationBtn";
 import ProfileBtn from "./ProfileBtn";
 import Link from "next/link";
-import { Avatar } from "../Ui/Atom/Avatar";
+import { Avatar } from "@/client/ui";
 
 export const Header = ({ userId }: { userId: string }) => {
   const pathList = usePathname()?.split("/").slice(1);

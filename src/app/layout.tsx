@@ -1,16 +1,16 @@
 import { ToastContainer } from "react-toastify";
 
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
 import { authService } from "@/server/services";
 import { cookies } from "next/headers";
 
 import { BOOT_STRAP_LINK } from "@/constants";
-import { SWRProvider } from "@/components/SWR/SWRProvider";
 
 import "@/styles/globals.css";
+
 import "react-toastify/dist/ReactToastify.css";
-import { QueryProvider } from "@/components/QueryClient";
+import { Footer } from "@/client/common/Footer";
+import { Header } from "@/client/common/Header";
+import { QueryProvider } from "@/client/common/QueryClient";
 
 export default async function RootLayout(props: {
   children: React.ReactNode;
@@ -25,20 +25,18 @@ export default async function RootLayout(props: {
       </head>
       <body className="overflow-auto">
         <QueryProvider>
-          <SWRProvider>
-            {session?.user ? (
-              <>
-                <Header userId={String(session.user?.id)} />
-                <main className="pt-[100px] min-h-screen w-full">{props.children}</main>
-                {props.modal}
-              </>
-            ) : (
-              <main>{props.auth}</main>
-            )}
+          {session?.user ? (
+            <>
+              <Header userId={String(session.user?.id)} />
+              <main className="pt-[100px] min-h-screen w-full">{props.children}</main>
+              {props.modal}
+            </>
+          ) : (
+            <main>{props.auth}</main>
+          )}
 
-            <Footer />
-            <ToastContainer />
-          </SWRProvider>
+          <Footer />
+          <ToastContainer />
         </QueryProvider>
       </body>
     </html>

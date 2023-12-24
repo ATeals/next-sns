@@ -20,7 +20,7 @@ export default async ({
 
   return (
     <section className="flex flex-col items-center pt-20">
-      <UpdateForm user={session?.user} previousMarkdown={post.body} postId={post.id} />
+      <UpdateForm post={post} />
     </section>
   );
 };

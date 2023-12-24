@@ -1,7 +1,8 @@
-import { InputBox } from "@/components/Ui/Atom/InputBox";
+"use client";
+
 import { useState } from "react";
 import { Body } from "./Body";
-import { Button } from "@/components/Ui/Atom/Button";
+import { Button, InputBox } from "@/client/ui";
 
 interface CreatePostProps {
   onPosting: (markdown: string) => unknown;

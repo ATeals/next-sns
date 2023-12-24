@@ -1,8 +1,9 @@
+"use client";
+
 import { useContext } from "react";
 import { postContext } from "./Main";
-import { Description } from "@/components/Ui/Atom/Description";
 import Link from "next/link";
-import { Avatar } from "@/components/Ui/Atom/Avatar";
+import { Avatar, Description } from "@/client/ui";
 
 export const Footer = () => {
   const post = useContext(postContext);

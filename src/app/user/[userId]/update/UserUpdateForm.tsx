@@ -1,16 +1,13 @@
 "use client";
 
-import { Input } from "@/Ui/Atom/Input";
-import { Button } from "@/components/Ui/Atom/Button";
-import { Title } from "@/components/Ui/Atom/Title";
 import { useRouter } from "next/navigation";
 import useSWRMutation from "swr/mutation";
 import mutateFetch from "@/utils/mutateFetch";
 import toastError from "@/utils/toastError";
 import { User } from "@/types";
 import { useForm } from "react-hook-form";
-import { Avatar } from "@/components/Ui/Atom/Avatar";
 import { DEFAULT_AVATAR } from "@/constants";
+import { Avatar, Button, Input, Title } from "@/client/ui";
 
 interface UpdateForm {
   email: string;
@@ -39,6 +36,7 @@ export default ({ user }: { user: User }) => {
       onError: () => toastError("유저 업데이트에 실패했습니다."),
     }
   );
+
   const {
     formState: { errors },
     register,

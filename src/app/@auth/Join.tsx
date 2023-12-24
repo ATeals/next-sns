@@ -1,14 +1,13 @@
 "use client";
 
-import { Input } from "@/Ui/Atom/Input";
-import { Button } from "@/components/Ui/Atom/Button";
-import { Title } from "@/components/Ui/Atom/Title";
+import { Button, Input } from "@/client/ui";
+import { Title } from "@/client/ui";
 import { useRouter } from "next/navigation";
 import useSWRMutation from "swr/mutation";
 import mutateFetch from "@/utils/mutateFetch";
 import toastError from "@/utils/toastError";
 import { useForm } from "react-hook-form";
-import { Avatar } from "@/components/Ui/Atom/Avatar";
+import { Avatar } from "@/client/ui";
 import { DEFAULT_AVATAR } from "@/constants";
 
 interface JoinForm {

@@ -1,10 +1,10 @@
 "use client";
 
 import { generateClassName } from "@/utils/generateClassName";
-import { HtmlHTMLAttributes, ReactNode } from "react";
+import { HtmlHTMLAttributes, ReactElement, ReactNode } from "react";
 
 interface TitleProps extends Omit<React.HTMLProps<HTMLHeadingElement>, "size"> {
-  children: string;
+  children: ReactNode;
   className?: string;
   size?: "sm" | "md" | "lg";
   color?: string;

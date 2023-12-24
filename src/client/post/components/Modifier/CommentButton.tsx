@@ -1,6 +1,8 @@
-import { LinkIcon } from "@/components/Ui/Atom/Icon/LinkIcon";
+"use client";
+
 import { useContext } from "react";
 import { postContext } from "../post/Main";
+import { LinkIcon } from "@/client/ui";
 
 export const CommentButton = () => {
   const post = useContext(postContext);

@@ -1,13 +1,14 @@
 "use client";
 
-import PostPreview from "@/components/Post/PostPreview";
-import { LoadingIndicator } from "@/components/Ui/Atom/LoadingIndicator";
-import { Title } from "@/components/Ui/Atom/Title";
-import { Post, User } from "@/types";
+import { Post } from "@/client/post/components";
+import { Post as PostType } from "@/client/post/type";
+import { LoadingIndicator, Title } from "@/client/ui";
+import { User } from "@/types";
+import Link from "next/link";
 import useSWR from "swr";
 
 export const UserPosts = ({ profileOwnerId, user }: { profileOwnerId: string; user: User }) => {
-  const { data, isLoading } = useSWR<Post[]>(`/api/user/${profileOwnerId}/post`);
+  const { data, isLoading } = useSWR<PostType[]>(`/api/user/${profileOwnerId}/post`);
 
   return (
     <div className="flex flex-col items-center my-10">
@@ -16,7 +17,18 @@ export const UserPosts = ({ profileOwnerId, user }: { profileOwnerId: string; us
       {isLoading ? (
         <LoadingIndicator />
       ) : (
-        data?.map((post) => <PostPreview key={post.id} post={post} user={user} />)
+        data?.map((post) => (
+          <Post post={post} key={post.id}>
+            <Post.Header />
+            <Link href={`/user/${post.userId}/post/${post.id}`}>
+              <Post.Body className="h-[300px] overflow-hidden" />
+            </Link>
+            <Post.ModifierMenu>
+              <Post.CommentButton />
+            </Post.ModifierMenu>
+            <Post.Footer />
+          </Post>
+        ))
       )}
     </div>
   );

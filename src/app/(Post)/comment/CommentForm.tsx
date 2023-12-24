@@ -1,36 +1,31 @@
 "use client";
 
-import { PostHeader } from "@/components/Post";
-import { PostEditor } from "@/components/Post/PostEditor";
+import { Post } from "@/client/post/components";
+import { useCreatePostMutation } from "@/client/post/hooks";
 import { User } from "@/types";
-import mutateFetch from "@/utils/mutateFetch";
 import { useRouter } from "next/navigation";
-import useSWRMutation from "swr/mutation";
 
 export const CommentForm = ({ user, parentPostId }: { user: User; parentPostId: number }) => {
   const router = useRouter();
 
-  const { trigger, isMutating } = useSWRMutation(
-    "api/post",
-    (url, { arg }: { arg: string }) =>
-      mutateFetch(url, { body: { body: arg, userId: user?.id, parentPostId } }),
-    {
-      onSuccess: () => {
-        router.back();
-        router.refresh();
-      },
-      onError: (err) => console.log(err),
-    }
-  );
+  const { mutate, error } = useCreatePostMutation({
+    onSuccess: () => {
+      router.back();
+      router.refresh();
+    },
+    onError: () => console.log(error),
+  });
 
   const handlePosting = (markdown: string) => {
-    trigger(markdown);
+    mutate({ body: markdown, userId: String(user.id), parentPostId: parentPostId });
   };
 
   return (
     <div className="relative m-10 ring-1 ring-gray-300 rounded-xl p-5 w-[70%] bg-white max-w-[680px]">
-      <PostHeader avatar={user?.avatar} name={user?.name} timeLine="방금 전" />
-      <PostEditor onPosting={handlePosting} isMutating={isMutating} />
+      <Post>
+        <Post.Header user={user} />
+        <Post.Editer onPosting={handlePosting} />
+      </Post>
     </div>
   );
 };

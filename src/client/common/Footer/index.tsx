@@ -1,4 +1,4 @@
-import { Description } from "../Ui/Atom/Description";
+import { Description } from "@/client/ui";
 
 export const Footer = () => {
   return (
