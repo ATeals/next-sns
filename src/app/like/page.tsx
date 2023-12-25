@@ -1,4 +1,4 @@
-import { Title } from "@/components/Ui/Atom/Title";
+import { Title } from "@/client/ui";
 
 export default () => {
   return (

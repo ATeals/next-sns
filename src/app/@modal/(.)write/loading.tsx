@@ -1,4 +1,4 @@
-import { LoadingIndicator } from "@/components/Ui/Atom/LoadingIndicator";
+import { LoadingIndicator } from "@/client/ui";
 import { Modal } from "../Modal";
 
 export default () => {

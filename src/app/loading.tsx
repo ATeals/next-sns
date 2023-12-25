@@ -1,8 +1,6 @@
 "use client";
 
-import { Button } from "@/components/Ui/Atom/Button";
-import { LoadingIndicator } from "@/components/Ui/Atom/LoadingIndicator";
-import { Title } from "@/components/Ui/Atom/Title";
+import { Button, LoadingIndicator, Title } from "@/client/ui";
 import { useEffect, useState } from "react";
 
 export default () => {

@@ -1,6 +1,6 @@
 "use client";
 
-import { generateClassName } from "@/utils";
+import { generateClassName } from "@/client/common/utils";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 

@@ -1,4 +1,4 @@
-import type { User } from "@/types";
+import type { User } from "@/client/common/types";
 import { IronSession, getIronSession, unsealData } from "iron-session";
 import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 import { NextRequest } from "next/server";

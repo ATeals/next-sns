@@ -1,3 +1,3 @@
-import { LoadingIndicator } from "@/components/Ui/Atom/LoadingIndicator";
+import { LoadingIndicator } from "@/client/ui";
 
 export default () => <LoadingIndicator />;

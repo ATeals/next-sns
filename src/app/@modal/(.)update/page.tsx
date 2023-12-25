@@ -21,7 +21,7 @@ export default async ({
 
   return (
     <Modal>
-      <UpdateForm user={session?.user} previousMarkdown={post.body} postId={post.id} />
+      <UpdateForm post={post} />
     </Modal>
   );
 };

@@ -1,10 +1,8 @@
-import { Avatar } from "@/components/Ui/Atom/Avatar";
-import { LinkIcon } from "@/components/Ui/Atom/Icon/LinkIcon";
-import { Title } from "@/components/Ui/Atom/Title";
 import { authService, userService } from "@/server/services";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { UserPosts } from "./UserPosts";
+import { Avatar, LinkIcon, Title } from "@/client/ui";
 
 export default async ({ params: { userId } }: { params: { userId: string } }) => {
   const session = await authService.getSession(cookies());

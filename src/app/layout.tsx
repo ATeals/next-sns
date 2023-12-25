@@ -1,15 +1,16 @@
 import { ToastContainer } from "react-toastify";
 
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
 import { authService } from "@/server/services";
 import { cookies } from "next/headers";
 
-import { BOOT_STRAP_LINK } from "@/constants";
-import { SWRProvider } from "@/components/SWR/SWRProvider";
+import { BOOT_STRAP_LINK } from "@/config";
 
 import "@/styles/globals.css";
+
 import "react-toastify/dist/ReactToastify.css";
+import { Footer } from "@/client/common/components/Footer";
+import { Header } from "@/client/common/components/Header";
+import { QueryProvider } from "@/client/common/provider/QueryClient";
 
 export default async function RootLayout(props: {
   children: React.ReactNode;
@@ -23,7 +24,7 @@ export default async function RootLayout(props: {
         <link rel="stylesheet" href={BOOT_STRAP_LINK} />
       </head>
       <body className="overflow-auto">
-        <SWRProvider>
+        <QueryProvider>
           {session?.user ? (
             <>
               <Header userId={String(session.user?.id)} />
@@ -36,7 +37,7 @@ export default async function RootLayout(props: {
 
           <Footer />
           <ToastContainer />
-        </SWRProvider>
+        </QueryProvider>
       </body>
     </html>
   );
