@@ -10,11 +10,11 @@ export const POST = authService.ironSessionWrapper(async (req) => {
 
   const user = await db.user.findUnique({ where: { email } });
 
-  if (!user) return NextResponse.json({ error: "Not Found User" }, { status: 404 });
+  if (!user) return NextResponse.json({ error: "Not Found User" }, { status: 401 });
 
   const isValidPassword = await bcrypt.compare(password, user.password);
 
-  if (!isValidPassword) return NextResponse.json({ error: "Not Match Password" }, { status: 404 });
+  if (!isValidPassword) return NextResponse.json({ error: "Not Match Password" }, { status: 401 });
 
   req.session.user = { id: user.id, avatar: user.avatar || undefined, name: user.name };
   await req.session.save();
