@@ -85,8 +85,12 @@ https://coffeecat.vercel.app/
 서버 컴포넌트와 Parallel Routes를 이용하여 쿠키를 통한 인증 구현
 
 ### 게시글 CRUD
-
 ---
+
+
+https://github.com/ATeals/next-sns/assets/125727432/4224e9e4-83d6-4376-91e3-268b3c8a3031
+
+
 
 마크다운을 이용한 게시글
 
